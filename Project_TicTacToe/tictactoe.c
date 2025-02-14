@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int main(){
+	// WOW! look I made a crazy change!
 	// declaration for function that looks for wins
 	int test_win(char board[]);
 	
