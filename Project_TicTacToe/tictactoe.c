@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 int main(){
-	// WOW! look I made a crazy change!
 	// declaration for function that looks for wins
 	int test_win(char board[]);
+
+	void make_move(int turn, char board[], int move[]);
 	
 	// This is the game board. Will have x's and o's instead of spaces as time goes on
 	char board[] = " | | \n_____\n | | \n_____\n | | ";
@@ -18,22 +19,36 @@ int main(){
 	int bot_left = 24;
 	int bot_mid = 26;
 	int bot_right = 28;
-
-	// Random testing stuff
-	/* board[top_left] = 'x';
-	board[bot_mid] = 'x';
-	board[bot_right] = 'x'; */
+	
+	int move[2];
+	int turn = 0;
+	
+	while (test_win(board) == 1){
 	printf("%s\n", board);
-
+	printf("It is x's turn.\nWhere would you like to play?\n(e.g. 0 0 = top left, 1 2 = middle right)\nMake sure its number space number\nYour Move:");
+	scanf("%d %d", &move[0], &move[1]);
+	make_move(turn, board, move);
+	}
+	
 	// Text will be printed if you won.
+	printf("%s\n", board);
 	if(test_win(board) == 0){
 	printf("Yay, you won!");
 	};
+	
 
 	// End of main function.
 	return 0;
 }
 
+void make_move(int turn, char board[], int move[]){
+	int index = move[0] * 12 + move[1] * 2;
+	if (turn == 0){
+	board[index] = 'x';
+	} else {
+	board[index] = 'o';
+	}
+}
 
 int test_win(char board[]){
 	// Those easy indices again...
